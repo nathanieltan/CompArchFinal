@@ -34,7 +34,7 @@ module frequency
 		timer <= timer - 1;
 	    end
 	end
-	else begin
+	else if (cur_period < 12'h7FF && cur_period > 8) begin
 	    // frequency determined by cur_period 
 	    if (timer == 0) begin
 		oData <= !oData;
@@ -43,6 +43,9 @@ module frequency
 	    else begin
 		timer <= timer - 1;
 	    end
+	end
+	else begin
+	    oData <= 0;
 	end
 	if (curSweep_clk && !oldSweep_clk && iSweep_enable) begin
 	    // update frequency
