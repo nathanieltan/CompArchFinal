@@ -1,7 +1,7 @@
 
 module rectangle 
     (
-        output oData,
+        output reg oData,
 	input  clk,
         input  iReset,
 	input  iEnable,
@@ -33,11 +33,11 @@ module rectangle
 	// set things and update stuff
 	if (position != 0) begin
 	    position <= position - 1;
-	    assign oData = waveform[position] & iEnable;
+	    oData <= waveform[position] & iEnable;
 	end
 	else begin
 	    position <= 7;
-	    assign oData = waveform[position] & iEnable;
+	    oData <= waveform[position] & iEnable;
 	end
     end
 endmodule

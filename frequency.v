@@ -1,7 +1,7 @@
 
 module frequency 
     (
-        output oData,
+        output reg oData,
 	input  clk,
         input  iSweep_clk,
         input  iSweep_reset,
@@ -27,7 +27,7 @@ module frequency
 	if (iSweep_enable == 0) begin
 	    // frequency determinied by iPeriod
 	    if (timer == 0) begin
-		assign oData = !oData;
+		oData <= !oData;
 		timer <= iPeriod;
 	    end
 	    else begin
@@ -37,7 +37,7 @@ module frequency
 	else begin
 	    // frequency determined by cur_period 
 	    if (timer == 0) begin
-		assign oData = !oData;
+		oData <= !oData;
 		timer <= cur_period;
 	    end
 	    else begin
