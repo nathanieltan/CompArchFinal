@@ -1,4 +1,4 @@
-`include "envelope.v"
+`include "commonComponents.v"
 
 module envelopeTest(); 
 reg clk;
