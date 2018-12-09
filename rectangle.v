@@ -31,13 +31,18 @@ module rectangle
             end
 	endcase
 	// set things and update stuff
-	if (position != 0) begin
-	    position <= position - 1;
-	    oData <= waveform[position] & iEnable;
+	if (iEnable == 0) begin
+	    if (position != 0) begin
+	        position <= position - 1;
+	        oData <= waveform[position];
+	    end
+	    else begin
+	        position <= 7;
+	        oData <= waveform[position];
+	    end
 	end
 	else begin
-	    position <= 7;
-	    oData <= waveform[position] & iEnable;
+	    oData <= 0;
 	end
     end
 endmodule
