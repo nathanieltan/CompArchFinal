@@ -1,0 +1,323 @@
+$date
+	Fri Dec  7 11:28:43 2018
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module linearCounterTest $end
+$var wire 7 ! linearCounterOut [6:0] $end
+$var reg 1 " clk $end
+$var reg 1 # controlFlag $end
+$var reg 7 $ counterReloadValue [6:0] $end
+$var reg 1 % setHaltFlag $end
+$scope module linear $end
+$var wire 1 " clk $end
+$var wire 1 # controlFlag $end
+$var wire 7 & counterReloadValue [6:0] $end
+$var wire 7 ' linearCounterOut [6:0] $end
+$var wire 1 % setHaltFlag $end
+$var reg 7 ( counter [6:0] $end
+$var reg 1 ) haltFlag $end
+$upscope $end
+$upscope $end
+$scope module triangleChannel $end
+$var wire 1 * clk $end
+$var wire 1 + haltFlag $end
+$var wire 8 , inputReg1 [7:0] $end
+$var wire 8 - inputReg2 [7:0] $end
+$var wire 8 . inputReg3 [7:0] $end
+$var wire 4 / triangleOut [3:0] $end
+$var wire 11 0 timer [10:0] $end
+$var wire 1 1 sequenceClk $end
+$var wire 5 2 lengthCounterIn [4:0] $end
+$var wire 7 3 counterReload [6:0] $end
+$var wire 1 4 controlFlag $end
+$var reg 7 5 linearCounter [6:0] $end
+$var reg 4 6 wave [3:0] $end
+$scope module myTimer $end
+$var wire 1 * clk $end
+$var wire 11 7 timer [10:0] $end
+$var reg 1 1 pulse $end
+$var reg 1 8 t $end
+$upscope $end
+$scope module sequence $end
+$var wire 1 1 clk $end
+$var reg 1 9 direction $end
+$var reg 1 : linger $end
+$var reg 4 ; wave [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b1111 ;
+0:
+09
+08
+bz 7
+bx 6
+bx 5
+z4
+bz 3
+bz 2
+01
+bz 0
+b1111 /
+bz .
+bz -
+bz ,
+z+
+z*
+1)
+bx (
+bx '
+b1010 &
+1%
+b1010 $
+0#
+0"
+bx !
+$end
+#5000
+b1010 !
+b1010 '
+b1010 (
+1"
+#10000
+0"
+1#
+0%
+#15000
+0)
+1"
+#20000
+0"
+#25000
+b1001 !
+b1001 '
+b1001 (
+1"
+#30000
+0"
+#35000
+b1000 !
+b1000 '
+b1000 (
+1"
+#40000
+0"
+#45000
+b111 !
+b111 '
+b111 (
+1"
+#50000
+0"
+#55000
+b110 !
+b110 '
+b110 (
+1"
+#60000
+0"
+#65000
+b101 !
+b101 '
+b101 (
+1"
+#70000
+0"
+#75000
+b100 !
+b100 '
+b100 (
+1"
+#80000
+0"
+#85000
+b11 !
+b11 '
+b11 (
+1"
+#90000
+0"
+#95000
+b10 !
+b10 '
+b10 (
+1"
+#100000
+0"
+#105000
+b1 !
+b1 '
+b1 (
+1"
+#110000
+0"
+#115000
+b0 !
+b0 '
+b0 (
+1"
+#120000
+0"
+#125000
+1"
+#130000
+0"
+#135000
+1"
+#140000
+0"
+#145000
+1"
+#150000
+0"
+#155000
+1"
+#160000
+0"
+#165000
+1"
+#170000
+0"
+#175000
+1"
+#180000
+0"
+#185000
+1"
+#190000
+0"
+#195000
+1"
+#200000
+0"
+#205000
+1"
+#210000
+0"
+#215000
+1"
+#220000
+0"
+#225000
+1"
+#230000
+0"
+#235000
+1"
+#240000
+0"
+#245000
+1"
+#250000
+0"
+#255000
+1"
+#260000
+0"
+#265000
+1"
+#270000
+0"
+#275000
+1"
+#280000
+0"
+#285000
+1"
+#290000
+0"
+#295000
+1"
+#300000
+0"
+#305000
+1"
+#310000
+0"
+#315000
+1"
+#320000
+0"
+#325000
+1"
+#330000
+0"
+#335000
+1"
+#340000
+0"
+#345000
+1"
+#350000
+0"
+#355000
+1"
+#360000
+0"
+#365000
+1"
+#370000
+0"
+#375000
+1"
+#380000
+0"
+#385000
+1"
+#390000
+0"
+#395000
+1"
+#400000
+0"
+#405000
+1"
+#410000
+0"
+#415000
+1"
+#420000
+0"
+#425000
+1"
+#430000
+0"
+#435000
+1"
+#440000
+0"
+#445000
+1"
+#450000
+0"
+#455000
+1"
+#460000
+0"
+#465000
+1"
+#470000
+0"
+#475000
+1"
+#480000
+0"
+#485000
+1"
+#490000
+0"
+#495000
+1"
+#500000
+0"
+#505000
+1"
+#510000
+0"

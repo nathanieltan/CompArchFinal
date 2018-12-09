@@ -21,10 +21,12 @@ initial begin
     $dumpfile("triangleChannel.vcd");
     $dumpvars();
     assign controlFlag = 1'b1;
-    assign counterReload = 7'd200;
-    #5000
+    assign counterReload = 7'd20;
+    assign timer = 11'd10;
+    assign lengthCounterLoad = 5'd20;
+    #10000
     assign controlFlag = 1'b0;
-    #1000000
+    #10000000
     $finish();
 end
 endmodule

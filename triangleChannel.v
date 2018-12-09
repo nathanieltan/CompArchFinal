@@ -5,7 +5,7 @@ module triangleChannel(
     input[7:0] inputReg1,
     input[7:0] inputReg2,
     input[7:0] inputReg3,
-    output[3:0] reg wave
+    output reg[3:0] wave
 );
 
 wire controlFlag;       // Control Flag (also the length counter halt flag)
@@ -16,11 +16,10 @@ wire[3:0] triangleOut;
 wire sequenceClk;
 wire[4:0] lengthCounterOut;
 
-wire haltFlag;
+reg setHaltFlag;
 
-reg[6:0] linearCounter;
-
-assign haltFlag = controlFlag;
+wire[6:0] linearCounter;
+reg[7:0] inputReg3prev;
 
 // Redistributes inputs to more helpful wire collections
 assign controlFlag = inputReg1[7];
@@ -28,21 +27,18 @@ assign counterReload = inputReg1[6:0];
 assign timer = {inputReg3[2:0],inputReg2};
 assign lengthCounterIn = inputReg3[7:3];
 
+timer myTimer(clk, timer, sequenceClk);                  // Generates the clk for the sequencer
+triangleSequencer sequence(sequenceClk, triangleOut);    // Sequencese a Triangle
+linearCounter linear(clk, setHaltFlag, controlFlag, counterReload, linearCounter);
 
-timer myTimer(clk, timer, sequenceClk);
-triangleSequencer sequence(sequenceClk, triangleOut);
+always @(inputReg3) begin
+    setHaltFlag <= 1'b1;
+end
 
-always @(*) begin
+always @(posedge clk) begin
+
     if((linearCounter > 7'b0)&&(lengthCounterIn > 5'b0))
         wave <= triangleOut; 
-
-    if(haltFlag) begin
-        linearCounter <= counterReload;
-    end
-    else begin
-        if(linearCounter > 7'b0)
-            linearCounter <= linearCounter - 1;
-    end
 end
 endmodule
 
@@ -51,10 +47,29 @@ endmodule
 ////////////////////////////////////////////////////////////////
 module linearCounter(
     input clk,
-    input counterReloadValue,
-    output linearCounterOut
+    input setHaltFlag,
+    input controlFlag,
+    input[6:0] counterReloadValue,
+    output[6:0] linearCounterOut
 );
+reg haltFlag;
+reg[6:0] counter;
+assign linearCounterOut = counter;
 
+always @(posedge setHaltFlag)
+    haltFlag <= 1'b1;
+
+always @(posedge clk) begin
+    if(haltFlag)
+        counter <= counterReloadValue;
+    else begin
+        if(counter !== 7'b0)
+            counter <= counter - 7'b1; 
+    end
+    if(controlFlag)
+        haltFlag <= 1'b0;
+
+end
 endmodule
 
 ////////////////////////////////////////////////////////////////
@@ -65,7 +80,7 @@ module timer(
     input [10:0] timer,
     output reg pulse
 );
-reg t;
+reg[10:0] t;
 
 initial begin
     t <= 0;
