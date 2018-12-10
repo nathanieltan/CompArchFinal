@@ -2,6 +2,8 @@
 
 module triangleChannelTest();
 reg clk;
+reg linearclk;
+reg lengthclk;
 wire[3:0] wave;
 reg controlFlag;
 reg[6:0] counterReload;
@@ -21,9 +23,9 @@ initial begin
     $dumpfile("triangleChannel.vcd");
     $dumpvars();
     assign controlFlag = 1'b1;
-    assign counterReload = 7'd20;
+    assign counterReload = 7'd100;
     assign timer = 11'd10;
-    assign lengthCounterLoad = 5'd20;
+    assign lengthCounterLoad = {4'hb,1'b0};
     #10000
     assign controlFlag = 1'b0;
     #10000000

@@ -1,7 +1,9 @@
-
+`include "commonComponents.v"
 
 module triangleChannel(
     input clk,
+    input linearclk,
+    input lengthclk,
     input[7:0] inputReg1,
     input[7:0] inputReg2,
     input[7:0] inputReg3,
@@ -14,11 +16,11 @@ wire[10:0] timer;
 wire[4:0] lengthCounterIn;
 wire[3:0] triangleOut;
 wire sequenceClk;
-wire[4:0] lengthCounterOut;
 
 reg setHaltFlag;
 
 wire[6:0] linearCounter;
+wire[6:0] lengthCounterOut;
 reg[7:0] inputReg3prev;
 
 // Redistributes inputs to more helpful wire collections
@@ -29,15 +31,16 @@ assign lengthCounterIn = inputReg3[7:3];
 
 timer myTimer(clk, timer, sequenceClk);                  // Generates the clk for the sequencer
 triangleSequencer sequence(sequenceClk, triangleOut);    // Sequencese a Triangle
-linearCounter linear(clk, setHaltFlag, controlFlag, counterReload, linearCounter);
+linearCounter linear(linearclk, setHaltFlag, controlFlag, counterReload, linearCounter);
+
+lengthCounter length(lengthclk, 1'b0, lengthCounterIn, lengthCounterOut);
 
 always @(inputReg3) begin
     setHaltFlag <= 1'b1;
 end
 
 always @(posedge clk) begin
-
-    if((linearCounter > 7'b0)&&(lengthCounterIn > 5'b0))
+    if((linearCounter > 7'b0)&&(lengthCounterOut > 7'b0))
         wave <= triangleOut; 
 end
 endmodule
@@ -72,32 +75,6 @@ always @(posedge clk) begin
 end
 endmodule
 
-////////////////////////////////////////////////////////////////
-// Timer
-////////////////////////////////////////////////////////////////
-module timer(
-    input clk,
-    input [10:0] timer,
-    output reg pulse
-);
-reg[10:0] t;
-
-initial begin
-    t <= 0;
-    pulse <= 0;
-end
-
-always @(posedge clk) begin
-    if(t == 11'b0) begin
-        pulse <= 1;
-        t <= timer;
-    end
-    else begin
-        pulse <= 0;
-        t <= t-1;
-    end
-end
-endmodule
 
 ////////////////////////////////////////////////////////////////
 // Sequencer (generates triangle wave)

@@ -158,10 +158,10 @@ endmodule
 module clkDivider(
     input clk,
     input rst,
-    input[3:0] N,
+    input[16:0] N,
     output clk_out
 );
-reg[3:0] n;
+reg[16:0] n;
 reg[3:0] r_reg;
 wire[3:0] r_next;
 reg clk_track;
@@ -188,3 +188,31 @@ end
 assign r_next = r_reg+1;
 assign clk_out = clk_track;
 endmodule
+
+////////////////////////////////////////////////////////////////
+// Timer
+////////////////////////////////////////////////////////////////
+module timer(
+    input clk,
+    input [10:0] timer,
+    output reg pulse
+);
+reg[10:0] t;
+
+initial begin
+    t <= 0;
+    pulse <= 0;
+end
+
+always @(posedge clk) begin
+    if(t == 11'b0) begin
+        pulse <= 1;
+        t <= timer;
+    end
+    else begin
+        pulse <= 0;
+        t <= t-1;
+    end
+end
+endmodule
+
