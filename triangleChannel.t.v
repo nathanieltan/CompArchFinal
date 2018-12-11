@@ -10,7 +10,7 @@ reg[6:0] counterReload;
 reg[10:0] timer;
 reg[4:0] lengthCounterLoad;
 
-triangleChannel triangle(clk, {controlFlag, counterReload}, timer[7:0], {lengthCounterLoad, timer[10:8]}, wave);
+triangleChannel triangle(clk, clk, clk,{controlFlag, counterReload}, timer[7:0], {lengthCounterLoad, timer[10:8]}, wave);
 
 initial
     clk <= 0;

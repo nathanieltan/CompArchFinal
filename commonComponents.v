@@ -162,8 +162,8 @@ module clkDivider(
     output clk_out
 );
 reg[16:0] n;
-reg[3:0] r_reg;
-wire[3:0] r_next;
+reg[16:0] r_reg;
+wire[16:0] r_next;
 reg clk_track;
 
 initial begin
