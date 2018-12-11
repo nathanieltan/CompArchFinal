@@ -1,9 +1,10 @@
 `include "rectangle.v"
 `include "frequency.v"
-`include "commonComponents.v"
 
 module pulseChannel(
     input clk,
+    input channel_enable,
+    input channel_reset,
     input iLength_clk,
     input iEnvelope_clk,
     input iSweep_clk,
@@ -44,6 +45,7 @@ reg rectangle_reset;
 reg sweep_reset;
 reg envelope_reset;
 reg length_reset;
+reg period_reset;
 
 rectangle myRectangle(
     .oData(rectangle_out),
@@ -58,10 +60,10 @@ frequency myFrequency(
     .iSweep_clk(iSweep_clk),
     .iSweep_reset(sweep_reset),
     .iSweep_enable(sweep_enable),
-    .iSweep_refresh_rate(),  // TODO
+    .iSweep_refresh_rate(sweep_reset),  // TODO
     .iSweep_mode(negate),
     .iSweep_shift(shift),
-    .iPeriod_reset(),  // TODO
+    .iPeriod_reset(period_reset),  // TODO
     .iPeriod(timer)
 );
 envelope myEnvelope(
@@ -81,6 +83,12 @@ lengthCounter myLengthCounter(
 
 always @(posedge clk) begin
     // update flags as needed
+    if (channel_enable == 1 && length_out == 1 && rectangle_out == 1) begin
+	pulse <= envelope_volume;
+    end
+    else begin
+	pulse <= 4'b0;
+    end
 end
 
 endmodule
