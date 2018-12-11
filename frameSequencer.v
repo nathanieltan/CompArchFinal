@@ -1,4 +1,4 @@
-`include "commonComponents"
+`include "commonComponents.v"
 
 module frameSequencer(
     input clk,

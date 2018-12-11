@@ -1,4 +1,3 @@
-`include "commonComponents.v"
 
 module triangleChannel(
     input clk,
