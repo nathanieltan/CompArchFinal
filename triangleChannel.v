@@ -16,7 +16,6 @@ wire[4:0] lengthCounterIn;
 wire[3:0] triangleOut;
 wire sequenceClk;
 
-reg setHaltFlag;
 
 wire[6:0] linearCounter;
 wire[6:0] lengthCounterOut;
@@ -30,13 +29,10 @@ assign lengthCounterIn = inputReg3[7:3];
 
 timer myTimer(clk, timer, sequenceClk);                  // Generates the clk for the sequencer
 triangleSequencer sequence(sequenceClk, triangleOut);    // Sequencese a Triangle
-linearCounter linear(linearclk, setHaltFlag, controlFlag, counterReload, linearCounter);
+linearCounter linear(linearclk, controlFlag, counterReload, linearCounter);
 
 lengthCounter length(lengthclk, 1'b0, lengthCounterIn, lengthCounterOut);
 
-always @(inputReg3) begin
-    setHaltFlag <= 1'b1;
-end
 
 always @(posedge clk) begin
     if((linearCounter > 7'b0)&&(lengthCounterOut > 7'b0))
@@ -49,7 +45,6 @@ endmodule
 ////////////////////////////////////////////////////////////////
 module linearCounter(
     input clk,
-    input setHaltFlag,
     input controlFlag,
     input[6:0] counterReloadValue,
     output[6:0] linearCounterOut
@@ -58,19 +53,18 @@ reg haltFlag;
 reg[6:0] counter;
 assign linearCounterOut = counter;
 
-always @(posedge setHaltFlag)
+always @(posedge controlFlag)
     haltFlag <= 1'b1;
 
 always @(posedge clk) begin
-    if(haltFlag)
+    if(haltFlag) begin
         counter <= counterReloadValue;
+        haltFlag <= 1'b0;
+    end
     else begin
         if(counter !== 7'b0)
             counter <= counter - 7'b1; 
     end
-    if(controlFlag)
-        haltFlag <= 1'b0;
-
 end
 endmodule
 

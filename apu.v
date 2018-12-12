@@ -34,15 +34,182 @@ dac dacTriangle(triangleOut, triangleOut);
 
 initial begin
     $dumpfile("apu.vcd");
+    // B4
     assign controlFlag = 1'b1;
-    assign counterReload = 7'd100;
-    assign timer = 11'd200;
-    assign lengthCounterLoad = {4'h0,1'b1};
+    assign counterReload = 7'd50;
+    assign timer = 11'd1358;
+    assign lengthCounterLoad = {4'h4,1'b0};
     assign reset = 1'b1;
     #2
     assign reset = 1'b0;
     assign controlFlag = 1'b0;
-    #10000000
+    #10735000
+    // A4
+    assign counterReload = 7'd50;
+    assign timer = 11'd1524;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b1;
+
+    #2
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b0;
+    #10735000
+
+    // G4
+    assign counterReload = 7'd50;
+    assign timer = 11'd1712;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b1;
+
+    #2
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b0;
+    #10735000
+    // B4
+    assign controlFlag = 1'b1;
+    assign counterReload = 7'd50;
+    assign timer = 11'd1358;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    #2
+    assign lengthCounterLoad = {4'h4,1'b0};
+
+    assign controlFlag = 1'b0;
+    #10735000
+    // A4
+    assign counterReload = 7'd50;
+    assign timer = 11'd1524;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b1;
+
+    #2
+    assign lengthCounterLoad = {4'h4,1'b0};
+    assign controlFlag = 1'b0;
+    #10735000
+
+    // G4
+    assign counterReload = 7'd50;
+    assign timer = 11'd1712;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b1;
+
+    #2
+    assign lengthCounterLoad = {4'h4,1'b0};
+    assign controlFlag = 1'b0;
+    #10735000
+
+    // G4
+    assign counterReload = 7'd50;
+    assign timer = 11'd1712;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b1;
+
+    #2
+    assign lengthCounterLoad = {4'h2,1'b0};
+    assign controlFlag = 1'b0;
+    #6367500
+    // G4
+    assign counterReload = 7'd50;
+    assign timer = 11'd1712;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b1;
+
+    #2
+    assign lengthCounterLoad = {4'h2,1'b0};
+    assign controlFlag = 1'b0;
+    #6367500
+     // G4
+    assign counterReload = 7'd50;
+    assign timer = 11'd1712;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b1;
+
+    #2
+    assign lengthCounterLoad = {4'h2,1'b0};
+    assign controlFlag = 1'b0;
+    #6367500
+    // G4
+    assign counterReload = 7'd50;
+    assign timer = 11'd1712;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b1;
+
+    #2
+    assign lengthCounterLoad = {4'h2,1'b0};
+    assign controlFlag = 1'b0;
+    #6367500 
+
+    // A4
+    assign counterReload = 7'd50;
+    assign timer = 11'd1524;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b1;
+
+    #2
+    assign lengthCounterLoad = {4'h2,1'b0};
+    assign controlFlag = 1'b0;
+    #6367500
+    // A4
+    assign counterReload = 7'd50;
+    assign timer = 11'd1524;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b1;
+
+    #2
+    assign lengthCounterLoad = {4'h2,1'b0};
+    assign controlFlag = 1'b0;
+    #6367500
+    // A4
+    assign counterReload = 7'd50;
+    assign timer = 11'd1524;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b1;
+
+    #2
+    assign lengthCounterLoad = {4'h2,1'b0};
+    assign controlFlag = 1'b0;
+    #6367500
+    // A4
+    assign counterReload = 7'd50;
+    assign timer = 11'd1524;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b1;
+
+    #2
+    assign lengthCounterLoad = {4'h2,1'b0};
+    assign controlFlag = 1'b0;
+    #6367500
+    // B4
+    assign controlFlag = 1'b1;
+    assign counterReload = 7'd50;
+    assign timer = 11'd1358;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    #2
+    assign lengthCounterLoad = {4'h4,1'b0};
+
+    assign controlFlag = 1'b0;
+    #10735000
+    // A4
+    assign counterReload = 7'd50;
+    assign timer = 11'd1524;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b1;
+
+    #2
+    assign lengthCounterLoad = {4'h4,1'b0};
+    assign controlFlag = 1'b0;
+    #10735000
+
+    // G4
+    assign counterReload = 7'd50;
+    assign timer = 11'd1712;
+    assign lengthCounterLoad = {4'h3,1'b0};
+    assign controlFlag = 1'b1;
+
+    #2
+    assign lengthCounterLoad = {4'h4,1'b0};
+    assign controlFlag = 1'b0;
+    #10735000
+
     $finish();
 
 end

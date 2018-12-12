@@ -119,14 +119,14 @@ module envelope(
     input loop,              // Controls whether the volume loops or not
     input disableFlag,       // Controls the disable
     input resetFlag,         // resetFlag==0 if the length counter is written to
-    input[3:0] n,            // Period of the counter_clk. Volume defaults to n when disabled
+    input[16:0] n,            // Period of the counter_clk. Volume defaults to n when disabled
     output reg[3:0] volume   // Output
 );
 reg reset;
 reg[3:0] counter;
 wire counter_clk; 
 
-clkDivider divider(clk, reset, n+4'b1, counter_clk);
+clkDivider divider(clk, reset, n+17'b1, counter_clk);
 
 always @(posedge clk) begin
     if(resetFlag) begin
