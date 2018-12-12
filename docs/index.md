@@ -163,10 +163,10 @@ Inputs:
 1 bit 21.47 Mhz clk  
 1 bit 240 Hz clk  
 1 bit 120 Hz clk  
-8 bit register $4000 
-8 bit register $4001 
-8 bit register $4002 
-8 bit register $4003 
+8 bit register $4000    
+8 bit register $4001     
+8 bit register $4002    
+8 bit register $4003    
 
 Outputs:
 4 bit wave
