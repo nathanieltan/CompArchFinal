@@ -101,7 +101,47 @@ When counterLoad changes, its value is inputted to a lookup table which maps the
     | F |  $20| $1E|
 The code for the linear counter module can be found in commonComponents.v
 
+### Sweep Unit
+Inputs:
+1 bit 120 Hz clk
+3 bit sweepPeriod
+3 bit shift
+1 bit negate
+1 bit enable
+11 bit timerPeriod
+
+Outputs:
+11 bit outValue
+
+The sweep unit controls the frequency of the pulse channel. When the enable flag is low it outputs timerPeriod. When enable is high it updates the period of the pulse channel. It contains a counter incremented by the 120 Hz clk. Whenever the couner reaches sweepPeriod the outValue is either increased or decreased, depending on the negate flag. The new period is determined using the logic below.
+
+negateFlag is low:   
+new period = outValue + (outValue >> sweepShift)   
+negateFlag is high:  
+new period = outValue - (outValue >> sweepShift)   
+
+The code for the swwep unit can be found in frequency.v
+
+### Envelope Generator
+1 bit 21.47 Mhz clk  
+1 bit 240 Hz clk
+
 ## Pulse Channel
+Inputs:
+1 bit 21.47 Mhz clk  
+1 bit 240 Hz clk  
+1 bit 120 Hz clk
+8 bit register $4000
+8 bit register $4001
+8 bit register $4002
+8 bit register $4003
+
+Outputs:
+4 bit wave
+
+The pulse channel consists of a sweep unit, a recangle generator, an envelope generator, and a length counter.
+
+The output of the pulse channel is a rectangular wave. The frequency of the wave is determined by the sweep unit, and the amplitude is determined by the envelope generator. The sweep unit produces pulses with a reularly updating frequency. It conains a timer with a period controled by register $4002.
 
 ## Triangle Channel
 The triangle channel consists of a timer, triangle sequencer, linear counter and length counter.
