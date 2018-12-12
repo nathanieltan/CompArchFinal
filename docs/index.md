@@ -123,8 +123,18 @@ new period = outValue - (outValue >> sweepShift)
 The code for the swwep unit can be found in frequency.v
 
 ### Envelope Generator
-1 bit 21.47 Mhz clk  
+Inputs:
 1 bit 240 Hz clk
+1 bit loop
+1 bit disable
+17 bit period
+
+Outputs:
+4 bit outValue
+
+The envelope generator controls the volume of the pulse wave. When disabel is high it outputs a constant volume. When disable is low it generates a decreasing saw envelope. The decay rate of the volume depends on the period.
+
+The code for the envelope generator can be found in commonComponents.v
 
 ## Pulse Channel
 Inputs:
