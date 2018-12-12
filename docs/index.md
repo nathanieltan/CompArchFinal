@@ -5,7 +5,8 @@ The goal of this project was to replicate the audio processing unit(APU) found i
 
 To demonstrate the ability of our hardware, we successfully played the well known children’s song Hot Cross Buns. The .wav file output can be found on our github repository and can be played by most audio playback software.
 
-##### INSERT HIGH LEVEL DIAGRAM HERE ###########
+APU High Level Diagram: 
+![APU Diagram](https://github.com/nathanieltan/CompArchFinal/blob/master/docs/apu.png "APU Diagram")
 
 ## Clock Generator
 Inputs:
@@ -103,16 +104,25 @@ The code for the linear counter module can be found in commonComponents.v
 ## Pulse Channel
 
 ## Triangle Channel
-The triangle channel consists of a timer, sequencer, linear counter and length counter.
+The triangle channel consists of a timer, triangle sequencer, linear counter and length counter.
+
+The triangle sequencer when clocked by the timer outputs a rising and falling sequence of 0-15 to produce a triangle wave. The linear counter and length counter are redudent to each other and silence the channel when either of them output 0.
+
+![Triangle Channel](https://github.com/nathanieltan/CompArchFinal/blob/master/docs/triangleChannel.png)
 
 ## How to Run Demo
-Demo requirements:
-Ability to run linux commands in terminal
-Have the SoX package installed
+Demo requirements:  
+Ability to run linux commands in terminal  
+Have the SoX package installed  
 
-To run the demo, run the following commands in a linux terminal while in the project repository:
-iverilog apu.v
-./mkaudio.sh a.out
+To run the demo, run the following commands in a linux terminal while in the project repository:  
+iverilog apu.v  
+./mkaudio.sh a.out  
 Play audio.wav
 
+## References
+This project wouldn't have been possible without the NES dev wiki which contains very detailed specifications on how the NES APU works (http://wiki.nesdev.com). If you wish to replicate this project, please use this source to find more details on the channel specificaitons.
 ## Reflection
+While the APU technically works, we had to sacrifice a lot of the functionality we originally wanted due to time constraints. If we were to work on this further, we would add a noise channel which would act as percussion while playing music. We would also try to get the verilog towork on an FPGA and use the onboard DAC and audio codec to output the music through the audio port.
+
+We came into this project thinking that the scope was too small for a four person team so we chose to work on it as a two person team. However looking back it was very difficult to do what we wanted to with two people.
