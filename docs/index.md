@@ -46,10 +46,10 @@ Outputs:
 
 The timer controls the frequency of a channel’s output. It takes in an 11 bit array t. After a new value of t is loaded, an internal counter counts from t to 0. When the counter reaches 0 the timer emits a pulse and resets the counter to t.
 
-The following is an equation for channel frequency output based on t.
-F = fCPU/(32*(t+1))
-The following is an equation for what t should be set to for a desired frequency f.
-T = fCPU/(32*f-1)
+The following is an equation for channel frequency output based on t.  
+F = fCPU/(32*(t+1))  
+The following is an equation for what t should be set to for a desired frequency f.  
+T = fCPU/(32*f-1)  
 
 The code for the timer module can be found in commonComponents.v
 
