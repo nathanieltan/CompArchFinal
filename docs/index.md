@@ -136,22 +136,46 @@ The envelope generator controls the volume of the pulse wave. When disabel is hi
 
 The code for the envelope generator can be found in commonComponents.v
 
+### Rectangle Generator
+Inputs:
+1 bit 21.47 Mhz clk  
+2 bit duty cycle mode
+1 bit enable
+
+Outputs:
+1 bit outValue
+
+The when enable is high the rectangle generator produces a wave with a duty cycle determined by the duty cycle mode. When enable is low outValue is low. The duty cycle is determined by a look up table.
+
+| Mode | duty cycle |
+|------|------------|
+| 0    | 12.5%      |
+| 1    |   25%      |
+| 2    |   50%      |
+| 3    |   75%      |
+
+When a periodic signal with a much longer period than the rectangle generators clock controls enable this produces a rectangle wave with the period of the input signal and a duty cycle determined by the mode.
+
+The code for the rectangle generator can be found in rectangle.v
+
 ## Pulse Channel
 Inputs:
 1 bit 21.47 Mhz clk  
 1 bit 240 Hz clk  
-1 bit 120 Hz clk
-8 bit register $4000
-8 bit register $4001
-8 bit register $4002
-8 bit register $4003
+1 bit 120 Hz clk  
+8 bit register $4000 
+8 bit register $4001 
+8 bit register $4002 
+8 bit register $4003 
 
 Outputs:
 4 bit wave
 
 The pulse channel consists of a sweep unit, a recangle generator, an envelope generator, and a length counter.
 
-The output of the pulse channel is a rectangular wave. The frequency of the wave is determined by the sweep unit, and the amplitude is determined by the envelope generator. The sweep unit produces pulses with a reularly updating frequency. It conains a timer with a period controled by register $4002.
+The channel outpus a 4 bit wave a period determined by the sweep unit, an amplitude determined by the envelope generator, and a duty cycle determined by the rectangle generator. The length cunter will silence the channle if it outputs 0.
+
+The code for the pulse channel can be found in pulseChannel.v
 
 ## Triangle Channel
 The triangle channel consists of a timer, triangle sequencer, linear counter and length counter.
